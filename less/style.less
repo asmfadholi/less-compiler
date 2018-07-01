@@ -1,0 +1,57 @@
+@background-color: green;
+@font-family: Tahoma;
+@primary-color: #ccc;
+@secondary-color: #20B2AA;
+@line-height: 1em+1em;
+
+//text-color mixin
+.text-color(@a) when (lightness(@a) >= 50%){
+  color: black;
+}
+.text-color(@a) when (lightness(@a) < 50%){
+  color: white;
+}
+body {
+  background: @background-color;
+  font-family: @font-family;
+  line-height: @line-height;
+}
+h1, h3{
+  .bordered
+}
+
+.primary-text {
+  color: @primary-color;
+}
+.btn {
+  padding:10px 15px;
+  border:0;
+  .border-radius(5px);
+}
+.primary-btn:extend(.btn) {
+  color: #fff;
+  background: @primary-color;
+  .text-color(@primary-color);
+}
+.bordered{
+  border-top: 1px dotted #000;
+  border-bottom: 2px solid #000;
+}
+.border-radius(@radius){
+  border-radius: @radius;
+}
+
+ul#menu{
+  list-style: none;
+  background-color: lighten(@secondary-color, 50%);
+  li {
+    padding: 10px 0;
+    a {
+      secondary-color: @secondary-color;
+      text-decoration: none;
+      &:hover{
+        color: #000;
+      }
+    }
+  }
+}
